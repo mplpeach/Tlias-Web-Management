@@ -27,4 +27,6 @@ public interface EmpService {
     void update(Emp emp);
 
     Emp findById(Integer id);
+
+    List<Emp> list();
 }

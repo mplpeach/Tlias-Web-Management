@@ -42,4 +42,10 @@ public interface EmpMapper {
      * 统计员工性别人数
      */
     List<Map<String, Object>> countEmpGenderData();
+
+    /**
+     * 查询所有员工信息
+     */
+    @Select("select * from emp")
+    List<Emp> list();
 }
