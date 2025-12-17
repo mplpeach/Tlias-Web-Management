@@ -44,4 +44,11 @@ public class ClazzServiceImpl implements ClazzService {
         PageInfo<Clazz> pageInfo = new PageInfo<>(list);
         return new PageResult<Clazz>(pageInfo.getTotal(), pageInfo.getList());
     }
+
+    @Override
+    public void save(Clazz clazz) {
+        clazz.setCreateTime(LocalDateTime.now());
+        clazz.setUpdateTime(LocalDateTime.now());
+        clazzMapper.insert(clazz);
+    }
 }

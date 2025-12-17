@@ -11,4 +11,6 @@ public interface ClazzService {
      * @param clazzQueryParam 查询参数
      */
     PageResult<Clazz> page(ClazzQueryParam clazzQueryParam);
+
+    void save(Clazz clazz);
 }
