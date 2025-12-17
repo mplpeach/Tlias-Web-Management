@@ -48,6 +48,7 @@
             count(*) num
             from emp group by emp.job order by num;
     </select>
+    <!-- 统计员工性别人数 -->
     <select id="countEmpGenderData" resultType="java.util.Map">
         select
             if(gender = 1, '男性员工', '女性员工') name,
