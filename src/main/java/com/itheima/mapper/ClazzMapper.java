@@ -25,4 +25,15 @@ public interface ClazzMapper {
     @Insert("insert into clazz(name, room, begin_date, end_date, master_id, subject, create_time, update_time) " +
             "values(#{name}, #{room}, #{beginDate}, #{endDate}, #{masterId}, #{subject}, #{createTime}, #{updateTime})")
     void insert(Clazz clazz);
+
+    /**
+     * 根据id查询班级信息
+     */
+    @Select("select * from clazz where id = #{id}")
+    Clazz findById(Integer id);
+
+    /**
+     * 根据id修改班级信息
+     */
+    void updateById(Clazz clazz);
 }

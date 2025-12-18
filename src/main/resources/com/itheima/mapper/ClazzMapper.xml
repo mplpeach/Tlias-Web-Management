@@ -17,4 +17,17 @@
         order by c.update_time desc
     </select>
 
+    <update id="updateById">
+        update clazz
+        <set>
+            <if test="name != null and name != ''"> name = #{name}, </if>
+            <if test="room != null and room != ''"> room = #{room}, </if>
+            <if test="beginDate != null"> begin_date = #{beginDate}, </if>
+            <if test="endDate != null"> end_date = #{endDate}, </if>
+            <if test="masterId != null"> master_id = #{masterId}, </if>
+            <if test="subject != null"> subject = #{subject}, </if>
+            <if test="updateTime != null"> update_time = #{updateTime}, </if>
+        </set>
+        where id = #{id}
+    </update>
 </mapper>

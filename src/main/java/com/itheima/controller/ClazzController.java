@@ -26,4 +26,18 @@ public class ClazzController {
         clazzService.save(clazz);
         return Result.success();
     }
+
+    @GetMapping("{id}")
+    public Result findById(@PathVariable Integer id){
+        log.info("查询班级，id：{}", id);
+        Clazz clazz = clazzService.findById(id);
+        return Result.success(clazz);
+    }
+
+    @PutMapping
+    public Result update(@RequestBody Clazz clazz){
+        log.info("更新班级，数据：{}", clazz);
+        clazzService.update(clazz);
+        return Result.success();
+    }
 }
