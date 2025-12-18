@@ -17,11 +17,17 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler
     public Result handleDuplicateKeyException(DuplicateKeyException e) {
-        log.error("程序出错！！！" + e.getMessage());
+        log.error("唯一字段出错！！！" + e.getMessage());
         String message = e.getMessage();
         int i = message.indexOf("Duplicate entry");
         String errMsg = message.substring(i);
         String[] arr = errMsg.split(" ");
         return Result.error("【" + arr[2] + "】已存在");
+    }
+
+    @ExceptionHandler
+    public Result handleClazzHasStudentsException(ClazzHasStudentsException e) {
+        log.error("删除班级因还有学生出错！！！" + e.getMessage());
+        return Result.error(e.getMessage());
     }
 }

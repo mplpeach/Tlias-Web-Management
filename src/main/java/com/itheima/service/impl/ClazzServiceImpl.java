@@ -2,6 +2,7 @@ package com.itheima.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.itheima.exception.ClazzHasStudentsException;
 import com.itheima.mapper.ClazzMapper;
 import com.itheima.pojo.Clazz;
 import com.itheima.pojo.ClazzQueryParam;
@@ -9,6 +10,7 @@ import com.itheima.pojo.Emp;
 import com.itheima.pojo.PageResult;
 import com.itheima.service.ClazzService;
 import com.itheima.service.EmpService;
+import com.itheima.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +24,8 @@ public class ClazzServiceImpl implements ClazzService {
     private ClazzMapper clazzMapper;
     @Autowired
     private EmpService empService;
+    @Autowired
+    private StudentService studentService;
 
     @Override
     public PageResult<Clazz> page(ClazzQueryParam clazzQueryParam) {
@@ -61,5 +65,14 @@ public class ClazzServiceImpl implements ClazzService {
     public void update(Clazz clazz) {
         clazz.setUpdateTime(LocalDateTime.now());
         clazzMapper.updateById(clazz);
+    }
+
+    @Override
+    public void deleteById(Integer id) {
+        boolean exists = studentService.existsByClazzId(id) != null;
+        if (exists) {
+            throw new ClazzHasStudentsException();
+        }
+        clazzMapper.deleteById(id);
     }
 }

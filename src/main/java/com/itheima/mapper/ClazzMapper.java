@@ -2,10 +2,7 @@ package com.itheima.mapper;
 
 import com.itheima.pojo.Clazz;
 import com.itheima.pojo.ClazzQueryParam;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -36,4 +33,10 @@ public interface ClazzMapper {
      * 根据id修改班级信息
      */
     void updateById(Clazz clazz);
+
+    /**
+     * 根据id删除班级信息
+     */
+    @Delete("delete from clazz where id = #{id}")
+    void deleteById(Integer id);
 }
