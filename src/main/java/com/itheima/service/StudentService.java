@@ -11,4 +11,6 @@ public interface StudentService {
     PageResult<Student> page(StudentQueryParam studentQueryParam);
 
     void insert(Student student);
+
+    Student findById(Integer id);
 }

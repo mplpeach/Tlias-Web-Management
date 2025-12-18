@@ -26,4 +26,11 @@ public class StudentController {
         studentService.insert(student);
         return Result.success();
     }
+
+    @GetMapping("{id}")
+    public Result findById(@PathVariable Integer id) {
+        log.info("查询学生，id：{}", id);
+        Student student = studentService.findById(id);
+        return Result.success(student);
+    }
 }
