@@ -10,7 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.io.IOException;
 
 @Slf4j
-@WebFilter(urlPatterns = "/*")
+//@WebFilter(urlPatterns = "/*")
 public class TokenFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
@@ -31,6 +31,7 @@ public class TokenFilter implements Filter {
             // 5.返回错误信息（401状态码）
             log.info("请求头token为空，返回401");
             response.setStatus(401);
+            return;
         }
         // 6.判断token是否正确
         try {
