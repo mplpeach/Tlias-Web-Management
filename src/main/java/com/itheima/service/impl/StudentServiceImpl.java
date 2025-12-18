@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -35,5 +36,12 @@ public class StudentServiceImpl implements StudentService {
         });
         PageInfo<Student> pageInfo = new PageInfo<>(list);
         return new PageResult<>(pageInfo.getTotal(), pageInfo.getList());
+    }
+
+    @Override
+    public void insert(Student student) {
+        student.setCreateTime(LocalDateTime.now());
+        student.setUpdateTime(LocalDateTime.now());
+        studentMapper.insert(student);
     }
 }

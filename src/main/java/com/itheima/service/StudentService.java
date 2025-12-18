@@ -9,4 +9,6 @@ public interface StudentService {
     Integer existsByClazzId(Integer clazzId);
 
     PageResult<Student> page(StudentQueryParam studentQueryParam);
+
+    void insert(Student student);
 }

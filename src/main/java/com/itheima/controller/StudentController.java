@@ -4,9 +4,7 @@ import com.itheima.pojo.*;
 import com.itheima.service.StudentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
@@ -20,5 +18,12 @@ public class StudentController {
         log.info("分页查询，参数：{}", studentQueryParam);
         PageResult<Student> pageResult = studentService.page(studentQueryParam);
         return Result.success(pageResult);
+    }
+
+    @PostMapping
+    public Result save(@RequestBody Student student) {
+        log.info("新增学生，数据：{}", student);
+        studentService.insert(student);
+        return Result.success();
     }
 }
