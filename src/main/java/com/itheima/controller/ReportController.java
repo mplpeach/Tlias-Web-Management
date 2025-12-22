@@ -30,6 +30,7 @@ public class ReportController {
         JobOption jobOption = reportService.getEmpJobData();
         return Result.success(jobOption);
     }
+
     /**
      * 统计员工性别人数
      */

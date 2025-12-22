@@ -34,8 +34,6 @@ public class SessionController {
         return Result.success();
     }
 
-
-
     @GetMapping("/s1")
     public Result session1(HttpSession session){
         log.info("HttpSession-s1: {}", session.hashCode());

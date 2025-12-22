@@ -35,6 +35,7 @@ public class EmpController {
         empService.save(emp);
         return Result.success();
     }
+
     @DeleteMapping
     public Result delete(@RequestParam List<Integer> ids) {
         log.info("批量删除员工，员工id：{}", ids);

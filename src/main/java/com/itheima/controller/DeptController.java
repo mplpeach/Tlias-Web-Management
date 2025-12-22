@@ -32,7 +32,7 @@ public class DeptController {
     }
 
     @PostMapping
-    public Result addDept(@RequestBody Dept dept) {
+    public Result save(@RequestBody Dept dept) {
 //        System.out.println("新增部门：" + dept);
         log.info("新增部门：" + dept);
         deptService.addDept(dept);
@@ -48,7 +48,7 @@ public class DeptController {
     }
 
     @PutMapping
-    public Result updateDept(@RequestBody Dept dept){
+    public Result update(@RequestBody Dept dept){
 //        System.out.println("修改部门信息：" + dept);
         log.info("修改部门信息：" + dept);
         deptService.updateDept(dept);
