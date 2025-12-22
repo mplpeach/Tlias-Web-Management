@@ -1,5 +1,6 @@
 package com.itheima.controller;
 
+import com.itheima.anno.Log;
 import com.itheima.pojo.*;
 import com.itheima.service.StudentService;
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +24,7 @@ public class StudentController {
         return Result.success(pageResult);
     }
 
+    @Log
     @PostMapping
     public Result save(@RequestBody Student student) {
         log.info("新增学生，数据：{}", student);
@@ -37,6 +39,7 @@ public class StudentController {
         return Result.success(student);
     }
 
+    @Log
     @PutMapping
     public Result update(@RequestBody Student student) {
         log.info("更新学生，数据：{}", student);
@@ -44,6 +47,7 @@ public class StudentController {
         return Result.success();
     }
 
+    @Log
     @DeleteMapping("{ids}")
     public Result delete(@PathVariable String ids) {
         log.info("删除学生，ids：{}", ids);

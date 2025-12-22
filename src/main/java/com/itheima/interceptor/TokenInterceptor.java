@@ -1,6 +1,8 @@
 package com.itheima.interceptor;
 
+import com.itheima.utils.CurrentHolder;
 import com.itheima.utils.JwtUtils;
+import io.jsonwebtoken.Claims;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -33,7 +35,10 @@ public class TokenInterceptor implements HandlerInterceptor {
         }
         // 6.判断token是否正确
         try {
-            JwtUtils.parseJWT(token);
+            Claims claims = JwtUtils.parseJWT(token);
+            Integer empId = Integer.valueOf(claims.get("id").toString());
+            CurrentHolder.setCurrentId(empId);
+            log.info("当前用户id为：{}, 将其存入ThreadLocal", empId);
         } catch (Exception e) {
             // 7.返回错误信息（401状态码）
             log.info("token解析失败，返回401");
@@ -43,5 +48,12 @@ public class TokenInterceptor implements HandlerInterceptor {
         // 8.放行
         log.info("token正确，放行");
         return true;
+    }
+
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+        // 关键：请求处理完成后清理ThreadLocal
+        CurrentHolder.remove();
+        log.info("清理ThreadLocal中的用户ID");
     }
 }
